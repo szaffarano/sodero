@@ -1,0 +1,31 @@
+<font size="+1"><i>Proyecto <B>SODERO</B> - </i> Documentaci&oacute;n de los fuentes</font>
+
+<H2>void <A HREF="#DOC.DOCU">apagar_motor</A>()</H2>
+<BLOCKQUOTE> apagar_motor: implementa el comando reset con el bit de encender motor deshabilitado</BLOCKQUOTE>
+
+<A NAME="DOC.DOCU">
+<HR>
+<H2>Documentation</H2>
+<BLOCKQUOTE>
+apagar_motor: implementa el comando reset con el bit de encender motor
+deshabilitado.
+<pre>
+Estructura del byte del argumento:
+bit 7: encender motor de la unidad 3
+bit 6: encender motor de la unidad 2
+bit 5: encender motor de la unidad 1
+bit 4: encender motor de la unidad 0
+bit 3: 1 si DMA activa
+bit 2: 0 si reiniciar FDC
+bits 0-1:
+00: seleccionar A
+01: seleccionar B
+10: seleccionar C
+11: seleccionar D
+</pre></BLOCKQUOTE>
+<DL>
+</DL>
+<DL></DL><P><I><A HREF="index.html">Indice alfabetico</A></I> <I><A HREF="HIER.html">Herencia de clases</A></I></P><HR>
+<BR>
+Esta pagina fue generada con la ayuda de <A HREF="http://www.imaginator.com/doc++">DOC++</A>.
+</BODY>

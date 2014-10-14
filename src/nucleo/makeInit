@@ -1,0 +1,42 @@
+LOW_MEMORY_SIZE_ADDR=`./varaddr main.ld B _lowMemorySize`
+BIOS_MEMORY_SIZE_ADDR=`./varaddr main.ld B _biosMemorySize`
+BOOT_DRIVE_ADDR=`./varaddr main.ld B _bootDrive`
+BSS_SIZE_ADDR=`./varaddr main.ld B _bssSize`
+KERNEL_SIZE_ADDR=`./varaddr main.ld B _kernelSize`
+GDT_ADDR=`./varaddr main.ld B _gdt`
+IDT_ADDR=`./varaddr main.ld B _idt`
+INICIO_MEMORIA_ADDR=`./varaddr main.ld B inicio_memoria`
+
+#Constantes pasadas al nasm al compilar el sodero.asm
+BSS_START=`nm -f posix -td main.ld | grep "__bss_start A" | cut -d' ' -f3`
+END=`nm -f posix -td main.ld | grep "_end A" | cut -d' ' -f3`
+BSS_SIZE=`expr $END - $BSS_START`
+KERNEL_SIZE=`./filesize main.bin`
+MAIN=`./varaddr main.ld T main` # direccion de la funcion main()!!!
+
+echo "LOW_MEMORY_SIZE_ADDR=$LOW_MEMORY_SIZE_ADDR"
+echo "BIOS_MEMORY_SIZE_ADDR=$BIOS_MEMORY_SIZE_ADDR"
+echo "BOOT_DRIVE_ADDR=$BOOT_DRIVE_ADDR"
+echo "BSS_SIZE_ADDR=$BSS_SIZE_ADDR"
+echo "KERNEL_SIZE_ADDR=$KERNEL_SIZE_ADDR"
+echo "GDT_ADDR=$GDT_ADDR"
+echo "IDT_ADDR=$IDT_ADDR"
+echo "BSS_SIZE=$BSS_SIZE"
+echo "KERNEL_SIZE=$KERNEL_SIZE"
+echo "MAIN=$MAIN"
+echo "INICIO=$INICIO_MEMORIA_ADDR"
+
+nasm -o sodero.bin \
+-d LOW_MEMORY_SIZE_ADDR=$LOW_MEMORY_SIZE_ADDR \
+-d BIOS_MEMORY_SIZE_ADDR=$BIOS_MEMORY_SIZE_ADDR \
+-d BOOT_DRIVE_ADDR=$BOOT_DRIVE_ADDR \
+-d BSS_SIZE_ADDR=$BSS_SIZE_ADDR \
+-d KERNEL_SIZE_ADDR=$KERNEL_SIZE_ADDR \
+-d GDT_ADDR=$GDT_ADDR \
+-d BSS_SIZE=$BSS_SIZE \
+-d KERNEL_SIZE=$KERNEL_SIZE \
+-d IDT_ADDR=$IDT_ADDR \
+-d TSS_ADDR=$TSS_ADDR \
+-d MAIN=$MAIN \
+-d INICIO_MEMORIA_ADDR=$INICIO_MEMORIA_ADDR \
+sodero.asm

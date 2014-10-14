@@ -1,0 +1,11 @@
+for i in `find . -name '*.html'`
+do
+	sed s/This\ page\ was\ generated\ with\ the\ help\ of/Esta\ pagina\ fue\ generada\ con\ la\ ayuda\ de/g $i > /tmp/s
+	cp /tmp/s $i
+
+	sed s/Hierarchy\ of\ classes/Herencia\ de\ clases/g $i > /tmp/s
+	cp /tmp/s $i
+
+	sed s/Alphabetic\ index/Indice\ alfabetico/g $i > /tmp/s
+	cp /tmp/s $i
+done

@@ -1,0 +1,64 @@
+<font size="+1"><i>Proyecto <B>SODERO</B> - </i> Documentaci&oacute;n de los fuentes</font>
+
+<H2> <A HREF="#DOC.DOCU"></A></H2>
+<BLOCKQUOTE> <pre> El FDC (me estoy basando en el 82077AA de Intel, el cual _CREO_ que es compatible con el de NEC), tiene 9 registros como interface con el micro, los cuales van desde 0x3F0 a 0x3F7:  SRA: Registro de Estado Primario (Status Register A)(no accesible desde PC) SRB: Registro de Estado Secundario (Status Register B)(no accesible desde PC)  DOR: Registro de Salida Digital (Digital Output Register) TDR: Registro del dispositivo de disco (Tape Driver Register) +-> ta bien  la traduccion?? ;-) MSR: Registro Principal de Estado (Main Status Register) DSR: Registro Selector de Datos (Data Rate Select Register) FIFO: Registro de Datos DIR: Registro de Entrada Digital (Digital Input Register) CCR: Registro de Control de Configuracion (Configuration Control Registrer)  Estructura del DOR (Digital Output Register) +----+----+----+----+-----+---+----+----+ | M1 | M2 | M1 | M0 | DMA | R | S1 | S2 | +----+----+----+----+-----+---+----+----+ |    |    |    |     |    |    |    | |    |    |    |     |    |    +----+--> Unidad a seleccionar |    |    |    |     |    | |    |    |    |     |    +--> Resetear unidad ( en 0 resetea ) |    |    |    |     | |    |    |    |     +--> Si 1 DMA activa</BLOCKQUOTE>
+<A NAME="DOC.DOCU">
+<BLOCKQUOTE>
+<pre>
+El FDC (me estoy basando en el 82077AA de Intel, el cual _CREO_ que es
+compatible con el de NEC), tiene 9 registros como interface con el micro,
+los cuales van desde 0x3F0 a 0x3F7:
+
+SRA: Registro de Estado Primario (Status Register A)(no accesible desde PC)
+SRB: Registro de Estado Secundario (Status Register B)(no accesible desde PC)
+
+DOR: Registro de Salida Digital (Digital Output Register)
+TDR: Registro del dispositivo de disco (Tape Driver Register) +-> ta bien 
+la traduccion?? ;-)
+MSR: Registro Principal de Estado (Main Status Register)
+DSR: Registro Selector de Datos (Data Rate Select Register)
+FIFO: Registro de Datos
+DIR: Registro de Entrada Digital (Digital Input Register)
+CCR: Registro de Control de Configuracion (Configuration Control Registrer)
+
+Estructura del DOR (Digital Output Register)
++----+----+----+----+-----+---+----+----+
+| M1 | M2 | M1 | M0 | DMA | R | S1 | S2 |
++----+----+----+----+-----+---+----+----+
+|    |    |    |     |    |    |    |
+|    |    |    |     |    |    +----+--> Unidad a seleccionar
+|    |    |    |     |    |
+|    |    |    |     |    +--> Resetear unidad ( en 0 resetea )
+|    |    |    |     |
+|    |    |    |     +--> Si 1 DMA activa. Tener en cuenta que setear
+|    |    |    |          este bit a cero implica deshabilitar la IRQ6.
+|    |    |    |
++----+----+----+--> Encender/Apagar motor
+
+Estructura del MSR (Main Status Register)
++-----+-----+-----+-----+------+------+------+------+
+| RQM | DIO | DMA | CMD | DRV3 | DRV2 | DRV1 | DRV0 |
+|     |     |     | BSY | BSY  | BSY  | BSY  | BSY  |
++-----+-----+-----+-----+------+------+------+------+
+RQM: si esta seteado a uno, entonces el FDC puede transferir datos, si
+esta seteado a cero, no se permite el acceso.
+DIO: al setearse el RQM indica la direccion en la que se van a transferir
+los datos: 1 indica que hay que leer al FDC y 0 que hay que escribir.
+DMA: Aca va el valor que se especifico en el comando SPECIFY, se seteara
+unicamente durante la fase de ejecucion de un comando.
+CMD BUSY: se setea a uno cuando un comando esta en progeso, se activa cuando
+el FDC acepta el comando, y se desactiva el finalizar la fase
+de resultado.
+DRVn BUSY: se setea a uno cuando una unidad esta realizando un seek (se
+da en los comandos seek y recalibrate)
+
+Estructura del FIFO: Segun el manual es un registro de 16 bits!!!
+se utiliza tanto para leer/escribir datos como
+los parametros de los comandos.  Para acceder al
+mismo (ya sea leyendo o escribiendo), es importante
+tener en cuenta los bits RQM y DIO del MSR.
+</pre></BLOCKQUOTE>
+<DL></DL><P><I><A HREF="index.html">Alphabetic index</A></I> <I><A HREF="HIER.html">Hierarchy of classes</A></I></P><HR>
+<BR>
+This page was generated with the help of <A HREF="http://www.imaginator.com/doc++">DOC++</A>.
+</BODY>

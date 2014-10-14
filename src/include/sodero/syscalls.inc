@@ -1,0 +1,22 @@
+%define	CANT_SYS_CALLS	20
+
+%define	SYS_PRINTC		0
+%define	SYS_GETC		1
+%define	SYS_ABRIR		2
+%define	SYS_CERRAR		3
+%define	SYS_LEER		4
+%define	SYS_ESCRIBIR		5
+%define	SYS_ALOCAR		6
+%define	SYS_EJECUTAR		7
+%define	SYS_SALIR		8
+%define	SYS_PAUSA		9
+%define	SYS_MATAR		10
+%define	SYS_CD			11
+%define	SYS_ESPERAR_PID		12
+%define	SYS_ABRIR_DIRECTORIO	13
+%define	SYS_LEER_ENTRADA_DIR	14
+%define	SYS_DIR                 15
+%define	SYS_PS                  16
+%define	SYS_REBOOT              17
+%define	SYS_XCHG_APROP          18
+%define	SYS_LISTAR_DIRECTORIO   19

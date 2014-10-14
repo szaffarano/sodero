@@ -1,0 +1,24 @@
+<font size="+1"><i>Proyecto <B>SODERO</B> - </i> Documentaci&oacute;n de los fuentes</font>
+
+<H2>void <A HREF="#DOC.DOCU">actualizar_cursor</A>()</H2>
+<BLOCKQUOTE> actualizar_cursor: actualiza la posicion del cursor en base a las coordenadas actuales</BLOCKQUOTE>
+
+<A NAME="DOC.DOCU">
+<HR>
+<H2>Documentation</H2>
+<BLOCKQUOTE>
+actualizar_cursor: actualiza la posicion del cursor en base a las
+coordenadas actuales.
+<pre>
+lo que hay que escribirle a 0x3D5 es (para un par X,Y): Y * 80 + X
+por ejemplo, para (10,8) -> 8 * 80 + 10 = 650 = 0x028A = 0000001010001010
+pero se le escribe en dos partes, el word mas bajo (seteando
+el port 0x3D4 con 0xF) en este caso 0x8A, y el word mas alto, seteando
+el port 0x3D4 con 0xE), en este caso con 0x02.
+</pre></BLOCKQUOTE>
+<DL>
+</DL>
+<DL></DL><P><I><A HREF="index.html">Indice alfabetico</A></I> <I><A HREF="HIER.html">Herencia de clases</A></I></P><HR>
+<BR>
+Esta pagina fue generada con la ayuda de <A HREF="http://www.imaginator.com/doc++">DOC++</A>.
+</BODY>

@@ -1,0 +1,23 @@
+gcc -c interfaz.c -I../include -Wall -nostdinc
+interfaz.c: In function `interfaz':
+interfaz.c:27: parse error before `int'
+interfaz.c:27: warning: statement with no effect
+interfaz.c:27: parse error before `)'
+interfaz.c:22: warning: unused variable `argumentos'
+interfaz.c: At top level:
+interfaz.c:33: warning: type defaults to `int' in declaration of `dato'
+interfaz.c:33: warning: passing arg 1 of `ingresar_cadena' makes pointer from integer without a cast
+interfaz.c:33: warning: initialization makes integer from pointer without a cast
+interfaz.c:33: initializer element is not constant
+interfaz.c:33: warning: data definition has no type or storage class
+interfaz.c:34: warning: type defaults to `int' in declaration of `parsear_argumentos'
+interfaz.c:34: warning: parameter names (without types) in function declaration
+interfaz.c:34: warning: data definition has no type or storage class
+interfaz.c:36: warning: type defaults to `int' in declaration of `pid'
+interfaz.c:36: warning: passing arg 1 of `ejecutar' makes pointer from integer without a cast
+interfaz.c:36: initializer element is not constant
+interfaz.c:36: warning: data definition has no type or storage class
+interfaz.c:38: parse error before `if'
+interfaz.c:55: conflicting types for `parsear_argumentos'
+interfaz.c:34: previous declaration of `parsear_argumentos'
+make: *** [interfaz.o] Error 1

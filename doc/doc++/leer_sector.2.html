@@ -1,0 +1,38 @@
+<font size="+1"><i>Proyecto <B>SODERO</B> - </i> Documentaci&oacute;n de los fuentes</font>
+
+<H2>int <A HREF="#DOC.DOCU">leer_sector</A>(dword cabeza, dword pista, dword sector, void* buff)</H2>
+<BLOCKQUOTE> leer_sector: Lee un sector de disco, recibiendo como argumentos cabeza,  pista y sector</BLOCKQUOTE>
+
+<A NAME="DOC.DOCU">
+<HR>
+<H2>Documentation</H2>
+<BLOCKQUOTE>
+leer_sector: Lee un sector de disco, recibiendo como argumentos cabeza, 
+pista y sector. Analogo a la int 13 del BIOS
+Implementada en base al pseudo codigo del manual de intel
+</BLOCKQUOTE>
+<DL>
+</DL>
+<DL><DT><B>Returns:</B><DD>el estado de la lectura
+<pre>
+Comando leer datos
++---+---+---+---+---+---+---+---+
+| 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
++---+---+---+---+---+---+---+---+
+|   |   |           |   |
+|   |   |           +---+--> si 11 entonces voy a leer
+|   |   |
+|   |   +--> si = 1 -> Skip Control
+|   +--> si = 1 -> doble densidad
++--> si = 1 -> multi track 
+palabra de control = 11100110 = 0xE6 (con multitrack)
+palabra de control = 01100110 = 0x66 (sin multitrack)
+</pre>
+<DT><B>Parameters:</B><DD><B>cabeza</B> -  la cabeza a leer
+<BR><B>pista</B> -  la pista a leer
+<BR><B>sector</B> -  el sector a leer
+<BR><B>buff</B> -  espacio en memoria donde se almacena el sector leido
+<BR></DL><P><I><A HREF="index.html">Indice alfabetico</A></I> <I><A HREF="HIER.html">Herencia de clases</A></I></P><HR>
+<BR>
+Esta pagina fue generada con la ayuda de <A HREF="http://www.imaginator.com/doc++">DOC++</A>.
+</BODY>

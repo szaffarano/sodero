@@ -1,0 +1,38 @@
+<font size="+1"><i>Proyecto <B>SODERO</B> - </i> Documentaci&oacute;n de los fuentes</font>
+
+<H2>void <A HREF="#DOC.DOCU">especificar_fdc</A>()</H2>
+<BLOCKQUOTE>  especificar_fdc: Implementacion del comando specify del FDC  <pre> Valores de los argumentos: byte0: 0x03 (duro) byte1:  +-----+-----+-----+-----+-----+-----+-----+-----+ | SR3 | SR2 | SR1 | SR0 | HU3 | HU2 | HU1 | HU0 | +-----+-----+-----+-----+-----+-----+-----+-----+ byte 2: +-----+-----+-----+-----+-----+-----+-----+-----+ | HL6 | HL5 | HL4 | HL3 | HL2 | HL1 | HL0 | DMA | +-----+-----+-----+-----+-----+-----+-----+-----+ SR: (Step Rate Time) tiempo comprendido entre dos impulsos consecutivos  de la senial que mueve el motor paso a paso</BLOCKQUOTE>
+
+<A NAME="DOC.DOCU">
+<HR>
+<H2>Documentation</H2>
+<BLOCKQUOTE>
+
+especificar_fdc: Implementacion del comando specify del FDC
+
+<pre>
+Valores de los argumentos:
+byte0: 0x03 (duro)
+byte1: 
++-----+-----+-----+-----+-----+-----+-----+-----+
+| SR3 | SR2 | SR1 | SR0 | HU3 | HU2 | HU1 | HU0 |
++-----+-----+-----+-----+-----+-----+-----+-----+
+byte 2:
++-----+-----+-----+-----+-----+-----+-----+-----+
+| HL6 | HL5 | HL4 | HL3 | HL2 | HL1 | HL0 | DMA |
++-----+-----+-----+-----+-----+-----+-----+-----+
+SR: (Step Rate Time) tiempo comprendido entre dos impulsos consecutivos 
+de la senial que mueve el motor paso a paso.  Para unidades de alta 
+densidad se calcula como (16-SR), en milisegundos.
+HL: (Head Load Time) Se mide en milisegundos, para unidades de alta densidad
+se calcula como (HL+1)*2
+HU: (Head Unload Time) Se mide en milisegundos, en unidades de alta densidad
+se calcula como (HU*16)
+DMA: si 0 modo DMA, si 1 modo NO DMA
+<pre></BLOCKQUOTE>
+<DL>
+</DL>
+<DL></DL><P><I><A HREF="index.html">Indice alfabetico</A></I> <I><A HREF="HIER.html">Herencia de clases</A></I></P><HR>
+<BR>
+Esta pagina fue generada con la ayuda de <A HREF="http://www.imaginator.com/doc++">DOC++</A>.
+</BODY>

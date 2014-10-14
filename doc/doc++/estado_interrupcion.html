@@ -1,0 +1,40 @@
+<font size="+1"><i>Proyecto <B>SODERO</B> - </i> Documentaci&oacute;n de los fuentes</font>
+
+<H2>void <A HREF="#DOC.DOCU">estado_interrupcion</A>(byte* st0, byte* pcn)</H2>
+<BLOCKQUOTE> estado_interrupcion: implementa el comando del FDC que consulta el estado (condiciones de fin, etc) de la ultima interrupcion que se disparo</BLOCKQUOTE>
+
+<A NAME="DOC.DOCU">
+<HR>
+<H2>Documentation</H2>
+<BLOCKQUOTE>
+estado_interrupcion: implementa el comando del FDC que consulta el estado
+(condiciones de fin, etc) de la ultima interrupcion
+que se disparo.
+</BLOCKQUOTE>
+<DL>
+</DL>
+<DL><DT><B>Parameters:</B><DD><B>st0</B> -  Primer Registro de Estado (Status Register 0).  Se setea a 
+la vuelta
+<BR><B>pcn</B> -  Indica la pista en la cual esta posicionada la cabeza lectora
+<pre>
+Estructura del primer registro de estado (ST0):
+bits7-6: Interrupt Code, si = 00 terminacion normal, comando finalizado
+exitosamente. Si 01: terminacion anormal.
+bit5: (SE): Seek End.  Se pone a uno cuando acaba una operacion de Seek.
+bit4: (EC) Equipment Check (comprobacion de equipo), se pone a uno si la
+unidad informa de un error o si tras un recalibrado no aparece aun
+la senial que indica que se alcanzo el cilindro cero.
+bit3: Not Ready, se pone a uno cuando la FDC informa sobre esta 
+condicion
+bit2: Head Address: indica el cabezal activo en el momento de la 
+interrupcion
+bits1-0: (US) Unt Select(Unidad Activa): indica la unidad activa 
+durante la  interrupcion: 0 -> A, 1 -> B, etc.
+Obtengo los primeros dos bits de la palabra de estado, que me va
+a dar la unidad sobre la cual se efectuo el posicionamiento
+de cabeza.  Si es distinto de cero significa que la unidad no
+es A.
+</pre><BR></DL><P><I><A HREF="index.html">Indice alfabetico</A></I> <I><A HREF="HIER.html">Herencia de clases</A></I></P><HR>
+<BR>
+Esta pagina fue generada con la ayuda de <A HREF="http://www.imaginator.com/doc++">DOC++</A>.
+</BODY>

@@ -1,0 +1,22 @@
+
+Bienvenido a la ayuda de SODERO V0.01
+~~~~~~~~~~ ~ ~~ ~~~~~ ~~ ~~~~~~ ~~~~~
+
+Comandos:
+	aprop: cambia el algoritmo de administracion de procesos.
+
+	cat: imprime por pantalla el contenido de un archivo.
+		cat <nombre archivo>
+
+	dir: lista los archivos y/o directorios del disco.
+
+	interfaz: el interprete de comandos.
+	
+	matar: finaliza la ejecucion de un proceso.
+		matar <numero de pid>
+	
+	molestar: emite un sonido por el parlante cada 1.5 segundos.
+	
+	ps: lista los procesos que se encuentran ejecutando en el sistema.
+	
+	reboot: resetea la PC.

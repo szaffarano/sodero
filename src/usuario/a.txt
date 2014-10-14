@@ -1,0 +1,9 @@
+
+Bienvenido a la ayuda de SODERO V0.01
+~~~~~~~~~~ ~ ~~ ~~~~~ ~~ ~~~~~~ ~~~~~
+
+Comandos:
+	aprop: cambia el algoritmo de administracion de procesos.
+
+	cat: imprime por pantalla el contenido de un archivo.
+		cat <nombre archivo>

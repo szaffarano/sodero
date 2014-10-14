@@ -1,0 +1,45 @@
+<font size="+1"><i>Proyecto <B>SODERO</B> - </i> Documentaci&oacute;n de los fuentes</font>
+
+<H2>void <A HREF="#DOC.DOCU">inicializa_teclado</A>()</H2>
+<BLOCKQUOTE> inicializa_teclado: Funcion utilizada para inicializar el teclado</BLOCKQUOTE>
+
+<A NAME="DOC.DOCU">
+<HR>
+<H2>Documentation</H2>
+<BLOCKQUOTE>
+inicializa_teclado: Funcion utilizada para inicializar el teclado.
+Se encarga de alocar el buffer_teclado, inicializar los indices del 
+buffer a 0. Deja habilitadas las teclas y los leds.
+Tambien , el comando 0xF3 al port 0x60 setea la velocidad de retardo,
+a continuacion se escribe al port 0x63 un byte con los valores:
+
+<PRE>
+
++---+---+---+---+---+---+---+---+
+| 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
++---+---+---+---+---+---+---+---+
+|   |   |   |   |   |   |   |
+|   |   |   |   |   +---+---+--> Numero A
+|   |   |   |   |
+|   |   |   +---+--> Numero B
+|   |   |
+|   +---+--> Tiempo que transcurre desde que se presiona una tecla
+|            hasta que empieza a repetirse (en intervalos de 0.25seg).
+|   
++--> Siempre va seteado a cero   
+1
+Tasa de Autorepeticion (Teclas/sec): --------------------------- 
+( 8 + A ) * 2^B * 0.00417
+
+Si seteamos al teclado para que espere 0.25 segundos y acepte 10
+caracteres por segundo, este byte deberia valer:
+0x2C = 0 01 01 100 -> A:4 B:1 
+0x40 = 0 10 00 000
+
+</PRE></BLOCKQUOTE>
+<DL>
+</DL>
+<DL></DL><P><I><A HREF="index.html">Indice alfabetico</A></I> <I><A HREF="HIER.html">Herencia de clases</A></I></P><HR>
+<BR>
+Esta pagina fue generada con la ayuda de <A HREF="http://www.imaginator.com/doc++">DOC++</A>.
+</BODY>
