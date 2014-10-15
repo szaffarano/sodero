@@ -2,7 +2,7 @@ TOOLS := ../tools
 
 KERNEL_INCLUDE := -I../include
 
-CCOPTS := -Wall -nostdinc $(KERNEL_INCLUDE)
+CCOPTS := -m32 -Wall -nostdinc $(KERNEL_INCLUDE)
 #NASM_OPTS := -I../include
 NASM_OPTS := 
 

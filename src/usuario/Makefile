@@ -1,5 +1,5 @@
 TOOLS := ../tools
-CCOPTS := -I../include -Wall -nostdinc
+CCOPTS := -m32 -I../include -Wall -nostdinc
 GCC := gcc
 #DEBUG := -DDEBUG
 
@@ -10,7 +10,7 @@ LIB := $(PATH_LIB)/biblioteca.a
 all: dir interfaz ps matar reboot molestar aprop cat ayuda
 
 dir: dir.o $(HEADERS) $(LIB)
-	ld -Map mapa_memoria.txt --cref -o dir.ld -Ttext 0x0 \
+	ld -melf_i386 -Map mapa_memoria.txt --cref -o dir.ld -Ttext 0x0 \
 	-N -e main dir.o $(LIB)
 	objcopy -R .comment -R .note -S -O binary dir.ld dir
 

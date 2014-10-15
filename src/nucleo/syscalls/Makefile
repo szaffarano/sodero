@@ -2,7 +2,7 @@ TOOLS := ../tools
 
 SYSCALLS_INCLUDE := -I../../include
 
-CCOPTS := -Wall -nostdinc $(SYSCALLS_INCLUDE)
+CCOPTS := -fno-stack-protector -m32 -Wall -nostdinc $(SYSCALLS_INCLUDE)
 
 GCC := gcc
 #DEBUG := -DDEBUG

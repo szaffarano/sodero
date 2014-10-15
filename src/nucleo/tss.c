@@ -20,7 +20,7 @@ void inicializar_tss (tss* tss_tarea) {
  * @param tss_usuario TSS a mostrar
  */
 void ver_tss (const tss* tss_usuario) {
-   imprimir ("registros SS:0x%xw ES:0x%xw CS:0x%xw DS:0x%xw
+   imprimir ("registros SS:0x%xw ES:0x%xw CS:0x%xw DS:0x%xw \
           FS:0x%xw GS:0x%xw ESP:0x%x EIP:0x%x\n", tss_usuario->ss,
                                                   tss_usuario->es,
                                                   tss_usuario->cs,

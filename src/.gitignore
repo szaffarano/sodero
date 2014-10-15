@@ -1,0 +1,9 @@
+**/*.o
+**/*.a
+boot/sodero_boot.bin
+nucleo/main.bin
+nucleo/main.ld
+nucleo/mapa_memoria.txt
+nucleo/sodero.bin
+nucleo/sodero.sys
+

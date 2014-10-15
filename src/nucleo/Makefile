@@ -2,7 +2,7 @@ TOOLS := ../tools
 
 KERNEL_INCLUDE := -I../include
 
-CCOPTS := -Wall -nostdinc $(KERNEL_INCLUDE)
+CCOPTS := -fno-stack-protector -m32 -Wall -nostdinc $(KERNEL_INCLUDE)
 #NASM_OPTS := -I../include
 NASM_OPTS := 
 
@@ -45,7 +45,7 @@ sodero.sys: sodero.bin main.bin
 .PHONY: apis
 
 main.bin: $(OBJETOS_SO) $(HEADERS) syscalls apis
-	ld -Map mapa_memoria.txt --cref -o main.ld -Ttext 0x0 \
+	ld -melf_i386 -Map mapa_memoria.txt --cref -o main.ld -Ttext 0x0 \
 	-N -e main $(OBJETOS_SO) $(OBJETOS_SYS) $(PATH_LIB)/biblioteca.a
 	objcopy -R .comment -R .note -S -O binary main.ld main.bin
 

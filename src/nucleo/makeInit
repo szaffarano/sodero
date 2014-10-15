@@ -8,8 +8,8 @@ IDT_ADDR=`./varaddr main.ld B _idt`
 INICIO_MEMORIA_ADDR=`./varaddr main.ld B inicio_memoria`
 
 #Constantes pasadas al nasm al compilar el sodero.asm
-BSS_START=`nm -f posix -td main.ld | grep "__bss_start A" | cut -d' ' -f3`
-END=`nm -f posix -td main.ld | grep "_end A" | cut -d' ' -f3`
+BSS_START=`nm -f posix -td main.ld | grep "__bss_start B" | cut -d' ' -f3`
+END=`nm -f posix -td main.ld | grep "_end B" | cut -d' ' -f3`
 BSS_SIZE=`expr $END - $BSS_START`
 KERNEL_SIZE=`./filesize main.bin`
 MAIN=`./varaddr main.ld T main` # direccion de la funcion main()!!!
