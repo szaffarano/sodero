@@ -18,6 +18,7 @@ install: all
 clean:
 	make -C $(BOOT) clean
 	make -C $(NUCLEO) clean
+	make -C $(USUARIO) clean
 	$(RM) $(PATH_LIB)/*
 
 usuario:
