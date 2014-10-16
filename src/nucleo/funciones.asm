@@ -155,7 +155,7 @@ cargar_idt:
 	pop	ebp			; recupero a ebp
 	ret
 
-llamar_int
+llamar_int:
 	int	0x20
 	ret
 
@@ -202,132 +202,132 @@ habilitar_irqs:
 
 
 irq0_handler_asm:
-.loop
+l1:
 	push	dword 0x0
 	call	timer_handler
 	add	esp, byte 4
 	iret
-jmp	.loop
+jmp	l1
 	
 irq1_handler_asm:
-.loop
+l2:
 	push	dword 0x1
 	call	teclado_handler
 	add	esp, byte 4
 	iret
-jmp	.loop
+jmp	l2
 		
 irq2_handler_asm:
-.loop
+.l3:
 	push	dword 0x2
 	call	irq2_handler
 	add	esp, byte 4
 	iret
-jmp	.loop
+jmp	.l3
 		
 irq3_handler_asm:
-.loop
+.l4:
 	push	dword 0x3
 	call	irq3_handler
 	add	esp, byte 4
 	iret
-jmp	.loop
+jmp	.l4
 		
 irq4_handler_asm:
-.loop
+.l5:
 	push	dword 0x4
 	call	irq4_handler
 	add	esp, byte 4
 	iret
-jmp	.loop
+jmp	.l5
 		
 irq5_handler_asm:
-.loop
+.l6:
 	push	dword 0x5
 	call	irq5_handler
 	add	esp, byte 4
 	iret
-jmp	.loop
+jmp	.l6
 		
 irq6_handler_asm:
-.loop
+.l7:
 	push	dword 0x6
 	call	disquetera_handler
 	add	esp, byte 4
 	iret
-jmp	.loop
+jmp	.l7
 		
 irq7_handler_asm:
-.loop
+.l8:
 	push	dword 0x7
 	call	irq7_handler
 	add	esp, byte 4
 	iret
-jmp	.loop
+jmp	.l8
 		
 irq8_handler_asm:
-.loop
+.l9:
 	push	dword 0x8
 	call	irq8_handler
 	add	esp, byte 4
 	iret
-jmp	.loop
+jmp	.l9
 		
 irq9_handler_asm:
-.loop
+.l10:
 	push	dword 0x9
 	call	irq9_handler
 	add	esp, byte 4
 	iret
-jmp	.loop
+jmp	.l10
 		
 irq10_handler_asm:
-.loop
+.l11:
 	push	dword 0x10
 	call	irq10_handler
 	add	esp, byte 4
 	iret
-jmp	.loop
+jmp	.l11
 		
 irq11_handler_asm:
-.loop
+.l12:
 	push	dword 0x11
 	call	irq11_handler
 	add	esp, byte 4
 	iret
-jmp	.loop
+jmp	.l12
 		
 irq12_handler_asm:
-.loop
+.l13:
 	push	dword 0x12
 	call	irq12_handler
 	add	esp, byte 4
 	iret
-jmp	.loop
+jmp	.l13
 		
 irq13_handler_asm:
-.loop
+.l14:
 	push	dword 0x13
 	call	irq13_handler
 	add	esp, byte 4
 	iret
-jmp	.loop
+jmp	.l14
 		
 irq14_handler_asm:
-.loop
+.l15:
 	push	dword 0x14
 	call	irq14_handler
 	add	esp, byte 4
 	iret
-jmp	.loop
+jmp	.l15
 			
 irq15_handler_asm:
-.loop
+.l16:
 	push	dword 0x15
 	call	irq15_handler
 	add	esp, byte 4
 	iret
-jmp	.loop
+jmp	.l16
 		
 sys_call_handler_asm:
 	push    ds
@@ -394,17 +394,17 @@ sys_call_handler:
         ;pop     ebx
 	jmp	.ok
 
-.error    ;imprimo un caracter 'E' por ahi...
+.error:    ;imprimo un caracter 'E' por ahi...
         ;push    ebx
         ;mov     byte bl, er 
         ;call    sys_printc_asm
         ;pop     ebx
 	mov	eax, -1
-.ok
+.ok:
 	iret
 
 ALIGN 4
-sys_printc_asm
+sys_printc_asm:
 	push	ebp
 	mov	ebp, esp
 
@@ -450,7 +450,7 @@ sys_printc_asm
 	ret
 
 ALIGN 4
-sys_setear_y
+sys_setear_y:
 	push	ebp
 	mov	ebp, esp
 
@@ -463,7 +463,7 @@ sys_setear_y
 	ret
 
 ALIGN 4
-sys_setear_x
+sys_setear_x:
 	push	ebp
 	mov	ebp, esp
 
@@ -476,7 +476,7 @@ sys_setear_x
 	ret
 
 ALIGN 4
-sys_obtener_color
+sys_obtener_color:
 	push	ebp
 	mov	ebp, esp
 
@@ -488,7 +488,7 @@ sys_obtener_color
 	ret
 
 ALIGN 4
-sys_setear_color
+sys_setear_color:
 	push	ebp
 	mov	ebp, esp
 
@@ -501,7 +501,7 @@ sys_setear_color
 	ret
 
 ALIGN 4
-sys_obtener_y
+sys_obtener_y:
 	push	ebp
 	mov	ebp, esp
 
@@ -513,7 +513,7 @@ sys_obtener_y
 	ret
 
 ALIGN 4
-sys_obtener_x
+sys_obtener_x:
 	push	ebp
 	mov	ebp, esp
 

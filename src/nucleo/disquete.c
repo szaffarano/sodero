@@ -57,7 +57,8 @@ void disquetera_handler (dword numero) {
  * esperar_interrupcion: espera que se dispare la IRQ
  */
 static void esperar_interrupcion () {
-   while ( irq6 != 1 );
+   delay ( MICRO(DELAY_FDC) );
+   //while ( irq6 != 1 );
    #ifdef DEBUG
    imprimir ( "FDC esta listo\n" );
    #endif

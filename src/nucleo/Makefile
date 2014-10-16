@@ -1,9 +1,9 @@
 TOOLS := ../tools
 
-KERNEL_INCLUDE := -I../include
+KERNEL_INCLUDE := -I../include 
 
 CCOPTS := -fno-stack-protector -m32 -Wall -nostdinc $(KERNEL_INCLUDE)
-#NASM_OPTS := -I../include
+#NASM_OPTS := -I../include 
 NASM_OPTS := 
 
 GCC := gcc
@@ -80,7 +80,7 @@ ide.o: ide.c $(HEADERS)
 	$(GCC) -c ide.c $(CCOPTS)
 
 disquete.o: disquete.c $(HEADERS)
-	$(GCC) -c disquete.c $(CCOPTS)
+	$(GCC) $(DEBUG) -c disquete.c $(CCOPTS)
 
 gdt.o: gdt.c $(HEADERS)
 	$(GCC) -c gdt.c $(CCOPTS)

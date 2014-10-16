@@ -1,11 +1,11 @@
 #include <sodero/sys_es.h>
 
-static int buscar_entrada ( char*, entrada_directorio* );
-static int comparar_nombres ( char*, char* );
+static int buscar_entrada ( unsigned char*, entrada_directorio* );
+static int comparar_nombres ( unsigned char*, unsigned char* );
 static int cluster_a_lba ( int );
 static int proximo ( int cluster );
 
-extern int comparar_cadenas ( const char*, const char* );
+extern int comparar_cadenas ( const unsigned char*, const unsigned char* );
 extern int sys_alocar ( const dword );
 extern int recuperar_base ();
 
@@ -30,9 +30,9 @@ extern byte* fat; // la tabla FAT
  *
  * @return un file descriptor representando al archivo o -1 en caso de error
  */
-int sys_abrir ( char* archivo ) {
+int sys_abrir ( unsigned char* archivo ) {
    int indice;
-   char* nombre = archivo + recuperar_base ();
+   unsigned char* nombre = archivo + recuperar_base ();
 
    entrada_directorio ed;
 
@@ -44,7 +44,7 @@ int sys_abrir ( char* archivo ) {
    }
 
    if ( buscar_entrada ( nombre, &ed ) == ERROR ) {
-      //imprimir ( "El archivo no existe!\n" );
+      imprimir ( "El archivo '%s' no existe!\n", nombre );
       return ERROR;
    }
 
@@ -171,7 +171,7 @@ int sys_leer ( int fd, void* buff, unsigned int cant ) {
  *
  * @return el estado de la operacion
  */
-int buscar_entrada ( char* nombre, entrada_directorio* arch ) {
+int buscar_entrada ( unsigned char* nombre, entrada_directorio* arch ) {
    int indice, j;
    int sector_dir_raiz;
    int tamanio_dir_raiz;
@@ -230,13 +230,14 @@ int buscar_entrada ( char* nombre, entrada_directorio* arch ) {
  * @param busqueda nombre del archivo a comparar
  * @param archivo nombre del archivo en la entrada directorio
  */
-static int comparar_nombres ( char* busqueda, char* archivo ) {
+static int comparar_nombres ( unsigned char* busqueda, unsigned char* archivo ) {
    int indice = 0;
    int indice_nuevo;
-   char archivo_nuevo[9];
+   unsigned char archivo_nuevo[9];
 
-   while ( archivo [indice] != ' ' && indice < 8 ) {
-      archivo_nuevo [indice] = archivo [indice++];
+   while ( archivo[indice] != ' ' && indice < 8 ) {
+      archivo_nuevo [indice] = archivo [indice];
+      indice++;
    }
 
    if ( archivo [8] != ' ' ) {

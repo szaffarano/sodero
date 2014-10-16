@@ -6,4 +6,14 @@ nucleo/main.ld
 nucleo/mapa_memoria.txt
 nucleo/sodero.bin
 nucleo/sodero.sys
-
+usuario/aprop
+usuario/ayuda
+usuario/cat
+usuario/dir
+usuario/interfaz
+usuario/mapa_memoria.txt
+usuario/molestar
+usuario/ps
+usuario/matar
+usuario/reboot
+**/*.ld

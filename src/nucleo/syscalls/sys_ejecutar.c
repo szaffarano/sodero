@@ -109,7 +109,9 @@ int sys_ejecutar ( char* arch, char* args[] ) {
          *valor = i;
          nueva_tarea->tarea->esp -= 4;
       } else {
+         #ifdef DEBUG
          imprimir ( "No se recibieron argumentos en ejecutar\n" );
+         #endif
       }
 
       /*

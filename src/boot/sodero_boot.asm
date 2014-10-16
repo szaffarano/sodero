@@ -101,7 +101,7 @@ cargar:
 	mov	cx, word [entradasRaiz]		; hay [entradasRaiz] entradas 
 						; en el directorio
 	mov	di, CARGA_FAT			; se leyo en ES:CARGA_FAT
-.loop
+l1:
 	push	cx
 	mov	cx, 0x000B			; cada entrada tiene 11 
 						; caracteres
@@ -117,7 +117,7 @@ cargar:
 						; CX e incremento DI para que 
 	add	di, 0x0020			; apunte a la siguiente entrada
 						; en la tabla
-	loop	.loop
+	loop	l1
 
 	jmp	error_carga			; si llegue hasta aca es 
 
@@ -179,10 +179,10 @@ cargar_kernel:
 	shr	bx, 1
 	and	ax, 1
 	mov	ax, [CARGA_FAT + BX]
-	jz	.cluster_par
-.cluster_impar
+	jz	cluster_par
+cluster_impar:
 	shr	ax, 4
-.cluster_par
+cluster_par:
 	and	ax, 0000111111111111b		; obtengo los ultimos 12 digitos
 
 	mov	word [cluster], ax		; si el cluster nuevo es 0x0FF0
@@ -225,9 +225,9 @@ error_carga:
 ; *    memoria apuntada por ES:BX
 ; ***************************************************************************/
 leer_sectores:
-.main
+main:
 	mov	di, 0x0005		; 5 reintentos antes de dar error
-.sector_loop
+sector_loop:
 	push	ax
 	push	bx
 	push	cx
@@ -240,7 +240,7 @@ leer_sectores:
 	mov	dh, byte [cabeza]
 	mov	dl, byte [nroDisp]
 	int	0x13			; leer!
-	jnc	.lectura_ok		; si no hubo carry --> lectura exitosa
+	jnc	lectura_ok		; si no hubo carry --> lectura exitosa
 
 	xor	ax, ax
 	int	0x13			; si hubo error se resetea la disketera
@@ -248,12 +248,12 @@ leer_sectores:
 	pop	cx
 	pop	bx
 	pop	ax
-	jnz	.sector_loop		; y si no me pase, reintento la lectura
+	jnz	sector_loop		; y si no me pase, reintento la lectura
 
 	int 0x18			; sino bootea --> mejorar manejo de 
 					; errores!!
 
-.lectura_ok
+lectura_ok:
 	mov	si, punto		; imprimir un punto cada vez que se lee
 	call print
 	pop	cx
@@ -261,7 +261,7 @@ leer_sectores:
 	pop	ax
 	add	bx, word [bytesPS]	; incrementar el buffer de lectura
 	inc	ax			; apuntar al siguiente sector
-	loop	.main			; leer el siguiente sector
+	loop	main			; leer el siguiente sector
 
 	ret				; no hay mas sectores para leer (CX=0)
 
@@ -342,7 +342,7 @@ print:
 
 	msg_carga	db	"Cargando SODERO", 0
 	punto		db	".", 0
-	msg_error	db	 10, 13, "Error", 0
+	msg_error	db	 10, 13, "Error Carga", 0
 
  ; se rellena con ceros hasta 2 bytes antes de terminar el sector
  times 510-($-$$) db 0

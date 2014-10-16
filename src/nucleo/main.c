@@ -133,13 +133,13 @@ int main () {
 }
 
 void tarea_dummy1 () {
-   int contador;
-   contador = 100;
+   //int contador;
+   //contador = 100;
    //llamar_sys_call ( SYS_ABRIR, (dword)"<nombre_archivo>", 1, 1 );
    while (1) {
-//      setear_coordenadas ( 10, 18);
-//      imprimir ("contador: %d\n", contador++);
-//      delay ( MICRO(1000000L) );
+   //setear_coordenadas ( 10, 18);
+   //imprimir ("contador: %d\n", contador++);
+   //delay ( MICRO(1000000L) );
    }
 }
 

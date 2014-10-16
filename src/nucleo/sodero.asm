@@ -24,7 +24,7 @@ org 0x0
 	push	cs		; DS = CS
 	pop	ds
 
-info_memoria	
+info_memoria:
 	; int 0x12 obtiene la memoria base (por si no son 640 KB)
 	int	0x12
 	movzx	eax, ax	
@@ -49,7 +49,7 @@ a32	mov	dword [dword BIOS_MEMORY_SIZE_ADDR + kernel], 0
 	; (declarada en main.c)
 a32	mov	[dword BIOS_MEMORY_SIZE_ADDR + kernel], eax
 
-.no_soportado
+.no_soportado:
 	cli			; deshabilitar interrupciones
 
 ; habilitar la compurta A20 (gracias Linus Torvalds!)
@@ -106,7 +106,7 @@ a32	mov	dword [dword INICIO_MEMORIA_ADDR + kernel], INICIO_MEMORIA
 	; el segmento CS con dicha direccion (comenzando a ejecutar
 	; el codigo recien copiado ahi, a partir de la etiqueta segunda_etapa)
 	jmp	0x9000:segunda_etapa
-segunda_etapa
+segunda_etapa:
 
 ; se copia a partir del label kernel (donde comienza el codigo C de main.c)
 ; al comienzo de la memoria (direccion 0)
@@ -178,7 +178,7 @@ segunda_etapa
 
 ; ya estamos en 32 bits!!!!!
 BITS 32		
-modo_protegido	
+modo_protegido:
 	; se carga una LDT nula
 	xor	ax, ax	
 	lldt	ax
@@ -216,9 +216,9 @@ BITS 16		; las rutinas utilizadas aca se llaman desde modo real!
 ;  * Delay: utilizada para habilitar la compuerta A20
 ;  * (gracias Linus!)
 ;  **********************************************************************/
-Delay 
+Delay:
 	jmp .next
-.next
+.next:
 ret
 
 ; /********************************************************************** 
@@ -229,7 +229,7 @@ ret
 ;  * quede en un estado "intestable"  esperando algun comando o datos.
 ;  * Muchas gracias Linus!!!!!!!!!!! (sacado de la version 0.0.1 de linux)
 ;  **********************************************************************/
-Empty8042
+Empty8042:
        	call    Delay
        	in      al, 64h
        	test    al, 1
@@ -237,7 +237,7 @@ Empty8042
        	call    Delay
        	in      al, 60h
        	jmp     Empty8042
-  .NoOutput
+.NoOutput:
        	test    al, 2
        	jnz     Empty8042
 ret
@@ -256,7 +256,7 @@ imprimir:
 	mov	bl, 0x07
 	int	0x10
 	jmp	imprimir
-.fin
+.fin:
 	ret
 
 ; /********************************************************************** 
@@ -265,10 +265,10 @@ imprimir:
 
 ; definicion de la GDT
 inicio_gdt:	
-descriptor_nulo	
+descriptor_nulo:
 	dd 0x0, 0x0
 
-descriptor_codigo		
+descriptor_codigo:
 	dw 0xFFFF	; limite (bits 0-15)
 	dw 0x0		; base (bits 0-15)
 	db 0x0		; base (bits 16-23)
@@ -276,7 +276,7 @@ descriptor_codigo
 	db 11001111b	; gran=1, use32=1, 0, 0, limit 16 - 19
 	db 0x0		; base (bits 24-31)
 
-descriptor_datos	; tambien usado para la pila!	
+descriptor_datos:	; tambien usado para la pila!
 	dw 0xFFFF	; limit (bits 0-15)
 	dw 0x0		; base (bits 0-15)
 	db 0x0		; base (bits 16-23)
@@ -292,11 +292,11 @@ fin_gdt:
 ;  **********************************************************************/ 
 loader_bienvenida	db	10, 13, "Iniciando Loader de SODERO...",10,13,0
 	
-GDT
+GDT:
 	GDTLimit	dw 	0xFFFF 	; GDT limit = maximum	
 	GDTBase		dd 	GDTBASE	; GDT base	
 
-IDT
+IDT:
 	idt_limite	dw	0xFFFF
 	idt_base	dd	IDTBASE
 

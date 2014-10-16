@@ -18,8 +18,8 @@
 
 //#define DEBUG 1
 
-typedef unsigned int dword;
-typedef unsigned short word;
-typedef unsigned char byte;
+typedef unsigned int		dword;
+typedef unsigned short		word;
+typedef unsigned char		byte;
 
 #endif //_DEFINICIONES_H_

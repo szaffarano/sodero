@@ -7,6 +7,7 @@ int main ( int argc, char* argv[] ) {
    int fd, i;
    char* buff = (char*) alocar ( MAX_BUFF + 1 );
 
+   imprimir("cat: cantidad de argumentos %d\n", argc);
    if ( argc != 2 ) {
       imprimir_cadena ( "Error en los argumentos\n" );
       imprimir_cadena ( "\t Utilizar cat <nombre_archivo>\n" );

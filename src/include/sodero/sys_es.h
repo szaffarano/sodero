@@ -19,7 +19,7 @@
 /**
  * sys_abrir: syscall encargada de abrir un archivo
  */
-int sys_abrir ( char* );
+int sys_abrir ( unsigned char* );
 
 /**
  * sys_abrir: syscall encargada de leer sobre un archivo

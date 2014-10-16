@@ -15,42 +15,42 @@ dir: dir.o $(HEADERS) $(LIB)
 	objcopy -R .comment -R .note -S -O binary dir.ld dir
 
 interfaz: interfaz.o $(HEADERS) $(LIB)
-	ld -Map mapa_memoria.txt --cref -o interfaz.ld -Ttext 0x0 \
+	ld -melf_i386 -Map mapa_memoria.txt --cref -o interfaz.ld -Ttext 0x0 \
 	-N -e main interfaz.o $(LIB)
 	objcopy -R .comment -R .note -S -O binary interfaz.ld interfaz
 
 ps: ps.o $(HEADERS) $(LIB)
-	ld -Map mapa_memoria.txt --cref -o ps.ld -Ttext 0x0 \
+	ld -melf_i386 -Map mapa_memoria.txt --cref -o ps.ld -Ttext 0x0 \
 	-N -e main ps.o $(LIB)
 	objcopy -R .comment -R .note -S -O binary ps.ld ps
 
 matar: matar.o $(HEADERS) $(LIB)
-	ld -Map mapa_memoria.txt --cref -o matar.ld -Ttext 0x0 \
+	ld -melf_i386 -Map mapa_memoria.txt --cref -o matar.ld -Ttext 0x0 \
 	-N -e main matar.o $(LIB)
 	objcopy -R .comment -R .note -S -O binary matar.ld matar
 
 reboot: reboot.o $(HEADERS) $(LIB)
-	ld -Map mapa_memoria.txt --cref -o reboot.ld -Ttext 0x0 \
+	ld -melf_i386 -Map mapa_memoria.txt --cref -o reboot.ld -Ttext 0x0 \
 	-N -e main reboot.o $(LIB)
 	objcopy -R .comment -R .note -S -O binary reboot.ld reboot
 
 molestar: molestar.o $(HEADERS) $(LIB)
-	ld -Map mapa_memoria.txt --cref -o molestar.ld -Ttext 0x0 \
+	ld -melf_i386 -Map mapa_memoria.txt --cref -o molestar.ld -Ttext 0x0 \
 	-N -e main molestar.o $(LIB)
 	objcopy -R .comment -R .note -S -O binary molestar.ld molestar
 
 aprop: xchg_aprop.o $(HEADERS) $(LIB)
-	ld -Map mapa_memoria.txt --cref -o aprop.ld -Ttext 0x0 \
+	ld -melf_i386 -Map mapa_memoria.txt --cref -o aprop.ld -Ttext 0x0 \
 	-N -e main xchg_aprop.o $(LIB)
 	objcopy -R .comment -R .note -S -O binary aprop.ld aprop
 
 cat: cat.o $(HEADERS) $(LIB)
-	ld -Map mapa_memoria.txt --cref -o cat.ld -Ttext 0x0 \
+	ld -melf_i386 -Map mapa_memoria.txt --cref -o cat.ld -Ttext 0x0 \
 	-N -e main cat.o $(LIB)
 	objcopy -R .comment -R .note -S -O binary cat.ld cat
 
 ayuda: ayuda.o $(HEADERS) $(LIB)
-	ld -Map mapa_memoria.txt --cref -o ayuda.ld -Ttext 0x0 \
+	ld -melf_i386 -Map mapa_memoria.txt --cref -o ayuda.ld -Ttext 0x0 \
 	-N -e main ayuda.o $(LIB)
 	objcopy -R .comment -R .note -S -O binary ayuda.ld ayuda
 

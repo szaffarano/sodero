@@ -389,9 +389,10 @@ int comparar_cadenas (const char* cad1, const char* cad2) {
 
    i = 0;
    while ( cad1[i] != '\0' ) {
-      if ( cad1[i] != cad2[i++] ) {
+      if ( cad1[i] != cad2[i] ) {
          return -1;
       }
+      i++;
    }
    return 0;
 }

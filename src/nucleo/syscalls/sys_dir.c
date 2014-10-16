@@ -106,8 +106,11 @@ int sys_leer_entrada_dir ( char* entrada, dir* directorio ) {
    }
    entrada[i] = '\0';
 
-   directorio->indice = directorio->indice + 1 == directorio->cant_entradas ? 
-                        -1 : ++directorio->indice;
+   if (directorio->indice+1 == directorio->cant_entradas) {
+      directorio->indice = -1;
+   } else {
+      directorio->indice += 1;
+   }
 
    return OK;
 }
